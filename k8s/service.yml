@@ -10,5 +10,5 @@ spec:
     app: retail-service
   ports:
   - protocol: TCP
-    port: 31000
+    port: 80
     targetPort: 7070

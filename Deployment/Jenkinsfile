@@ -114,10 +114,10 @@ stage('Kubernetes PortForward'){
 
 if (isUnix()) {
 
-sh "kubectl port-forward service/retail-service 7070:31000"
+sh "kubectl port-forward service/retail-service 7070:80"
 } else {
 
-bat(/kubectl port-forward service/retail-service 7070:31000/)
+bat(/kubectl port-forward service/retail-service 7070:80/)
 }
 
 }
