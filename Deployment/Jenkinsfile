@@ -8,7 +8,7 @@ node {
   
         stage('Prepare') {
             
-              git url: 'https://github.com/HimanshuChauhan0/retail_management_app-1.git', branch:'himanshu'
+              git url: 'https://github.com/krishnamurthypradeep/migration-devops-ci-cd-monitoring.git', branch:'master'
               mvnHome = tool 'mvn' 
             
         }
@@ -70,10 +70,56 @@ if (isUnix()) {
 sh "'${mvnHome}/bin/mvn' spring-boot:build-image"
 } else {
 
-bat(/"${mvnHome}\bin\mvn" spring-boot:build-images /)
+bat(/"${mvnHome}\bin\mvn" spring-boot:build-image /)
 }
 
 }
 
+
+stage('Load Docker Image'){
+
+if (isUnix()) {
+
+sh "minikube image load retail-service"
+} else {
+
+bat(/minikube image load retail-service/)
+}
+
+}
+stage('Kubernetes Pod'){
+
+if (isUnix()) {
+
+sh "kubectl apply -f k8s/deployment.yml"
+} else {
+
+bat(/kubectl apply -f k8s/deployment.yml/)
+}
+
+}
+stage('KubernetesService'){
+
+if (isUnix()) {
+
+sh "kubectl apply -f k8s/service.yml"
+} else {
+
+bat(/kubectl apply -f k8s/service.yml/)
+}
+
+}
+
+stage('Kubernetes PortForward'){
+
+if (isUnix()) {
+
+sh "kubectl port-forward service/retail-service 7070:31000"
+} else {
+
+bat(/kubectl port-forward service/retail-service 7070:31000/)
+}
+
+}
     
 }
