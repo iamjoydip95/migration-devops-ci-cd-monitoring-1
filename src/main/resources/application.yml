@@ -7,23 +7,14 @@ spring:
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: true  
   jpa:
     hibernate:
       ddl-auto: update      
     
 server:
-  port: 7070
-  
-
-  
-
-management:
-  
-  endpoints:
-    web:
-      exposure:
-        include:
-        - '*'      
+  port: 7070      
   
       
       
