@@ -94,7 +94,7 @@ if (isUnix()) {
 sh "kubectl apply -f k8s/deployment.yml"
 } else {
 
-bat(/kubectl apply -f k8s/deployment.yml/)
+bat("kubectl apply -f k8s/deployment.yml")
 }
 
 }
@@ -105,7 +105,7 @@ if (isUnix()) {
 sh "kubectl apply -f k8s/service.yml"
 } else {
 
-bat(/kubectl apply -f k8s/service.yml/)
+bat("kubectl apply -f k8s/service.yml")
 }
 
 }
@@ -117,7 +117,7 @@ if (isUnix()) {
 sh "kubectl port-forward service/retail-service 7070:80"
 } else {
 
-bat(/kubectl port-forward service/retail-service 7070:80/)
+bat("kubectl port-forward service/retail-service 7070:80")
 }
 
 }
