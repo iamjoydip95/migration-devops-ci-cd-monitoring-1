@@ -110,18 +110,5 @@ bat("kubectl apply -f k8s/service.yml")
 
 }
 
-stage('Kubernetes PortForward'){
-
-
-if (isUnix()) {
-sh 'sleep 300'
-
-sh "kubectl port-forward service/retail-service 7070:80"
-} else {
-sh 'sleep 300'
-bat("kubectl port-forward service/retail-service 7070:80")
-}
-
-}
     
 }
